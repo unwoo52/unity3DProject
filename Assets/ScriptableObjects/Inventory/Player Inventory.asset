@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22bf17b7b315794b86b34e023130ac2, type: 3}
+  m_Name: Player Inventory
+  m_EditorClassIdentifier: 
+  savePath: /inventory.Save
+  database: {fileID: 11400000, guid: 89d4ae298238c48459b71771cb6c3da0, type: 2}
+  Container:
+    Items:
+    - ID: -1
+      type: 0
+      item:
+        Name: 
+        ItemType: 0
+        Id: 0
+        buffs: []
+      amount: 0
+    - ID: -1
+      type: 0
+      item:
+        Name: 
+        ItemType: 0
+        Id: 0
+        buffs: []
+      amount: 0
+    - ID: -1
+      type: 0
+      item:
+        Name: 
+        ItemType: 0
+        Id: 0
+        buffs: []
+      amount: 0
+    - ID: -1
+      type: 0
+      item:
+        Name: 
+        ItemType: 0
+        Id: 0
+        buffs: []
+      amount: 0
+    - ID: -1
+      type: 0
+      item:
+        Name: 
+        ItemType: 0
+        Id: 0
+        buffs: []
+      amount: 0
+    - ID: -1
+      type: 0
+      item:
+        Name: 
+        ItemType: 0
+        Id: 0
+        buffs: []
+      amount: 0
+    - ID: -1
+      type: 0
+      item:
+        Name: 
+        ItemType: 0
+        Id: 0
+        buffs: []
+      amount: 0
+    - ID: -1
+      type: 0
+      item:
+        Name: 
+        ItemType: 0
+        Id: 0
+        buffs: []
+      amount: 0
+    - ID: -1
+      type: 0
+      item:
+        Name: 
+        ItemType: 0
+        Id: 0
+        buffs: []
+      amount: 0
