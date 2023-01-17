@@ -748,6 +748,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2660385769435624822, guid: ddb8e2cd0aa3fc747a366d8622efcabe, type: 3}
+      propertyPath: groundItem
+      value: 
+      objectReference: {fileID: 1703860301}
     - target: {fileID: 192768, guid: ddb8e2cd0aa3fc747a366d8622efcabe, type: 3}
       propertyPath: m_Name
       value: Object Item_Bush
@@ -2151,6 +2155,11 @@ Transform:
   m_Father: {fileID: 1071897237}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1703860301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 200489390960182595, guid: 4676c489f7108c744b8aef8c5bae7188, type: 3}
+  m_PrefabInstance: {fileID: 1873271159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1778338263
 GameObject:
   m_ObjectHideFlags: 0

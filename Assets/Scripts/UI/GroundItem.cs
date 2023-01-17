@@ -31,10 +31,8 @@ public class GroundItem : MonoBehaviour
             curPos = upMax;
         }
         transform.Translate(0, curPos *delta, 0);
-       
-        
     }
-    public bool CrateDropItem()
+    private bool CrateDropItem()
     {
         GameObject obj = new GameObject(item.name);
 

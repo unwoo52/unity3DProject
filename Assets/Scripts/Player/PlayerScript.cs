@@ -945,16 +945,6 @@ namespace Player
             }
         }
         #endregion
-        /***********************************************************************
-        *                               Collision Event
-        ***********************************************************************/
-        #region collisionEvent
-        #endregion
-        #region TriggerEvent
-        private void OnTriggerEnter(Collider other)
-        {
-        }
-        #endregion
 
 
         /***********************************************************************
