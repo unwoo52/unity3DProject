@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 8d5c614dec9f2a148add882c773a1559, type: 2}
-  Groubditem: {fileID: 200489390960182595, guid: 4676c489f7108c744b8aef8c5bae7188, type: 3}
+  groundItem: {fileID: 200489390960182595, guid: 4676c489f7108c744b8aef8c5bae7188, type: 3}
   PlayerMask:
     serializedVersion: 2
     m_Bits: 64
