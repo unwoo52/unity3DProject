@@ -892,50 +892,7 @@ namespace Player
         *                               Coroutine
         ***********************************************************************/
         #region .
-        /// <summary> TEST FIELD </summary>
-        /*
-        public float testZoomSpeed = 0f;
-        public float boolTEST = 1;
-        IEnumerator StartZoomCamera()
-        {
-            Vector3 tpCameraPos = Com.tpCamera.transform.localPosition + Vector3.up;
-            Vector3 startZoomCameraPos = StartCamera.transform.localPosition;
-            Quaternion tpCameraQuat = Com.tpCamera.transform.localRotation;
-            Quaternion startZoomCameraQuat = StartCamera.transform.localRotation;
-
-            //y,z,rotate dist
-
-            Vector3 diry = tpCameraPos - startZoomCameraPos;
-            diry.Normalize();
-            float disty = MathF.Abs(tpCameraPos.y - startZoomCameraPos.y); //이동할 방향과 거리
-            float delta;
-            float logValue = 1.1f;
-
-            while (disty > 0f)
-            {
-                Debug.Log(Mathf.Log(logValue, boolTEST));
-                delta = testZoomSpeed * Time.deltaTime * Mathf.Log(logValue, boolTEST);
-                if (delta > MathF.Abs(disty)) delta = disty;
-                disty -= delta;
-                StartCamera.transform.localPosition += diry * delta;
-                logValue += 0.01f;
-                //StartCamera.transform.Translate(dir * delta, Space.Self);
-                /*StartCamera.transform.Translate(Vector3.MoveTowards(
-                    StartCamera.transform.position,
-                    new Vector3(0, Mathf.Lerp(startZoomCameraPos.y, tpCameraPos.y, _deltaTime * testZoomSpeed), 0),
-                    float.MaxValue), Space.Self);*/
-        /*
-                //StartCamera.transform.localPosition = new Vector3(0, 0, Mathf.Lerp(startZoomCameraPos.z, tpCameraPos.z, 0.5f));
-                //(new Vector3(0, Mathf.Lerp(startZoomCameraPos.y, tpCameraPos.y, _deltaTime * testZoomSpeed), 0), Space.Self);
-                //StartCamera.transform.Translate(new Vector3(0, 0, Mathf.Lerp(startZoomCameraPos.z, tpCameraPos.z, _deltaTime * testZoomSpeed)), Space.Self);
-                //StartCamera.transform.eulerAngles = new Vector3(Mathf.Lerp(startZoomCameraQuat.x, tpCameraQuat.x, _deltaTime * testZoomSpeed), 0, 0);
-                yield return null;
-            }
-
-            StartCamera.SetActive(false);
-            ChangeState(STATE.NORMAL);
-        }
-        */
+        
         IEnumerator CoolDown()
         {
             while (myInfo.curAtDelay >= Mathf.Epsilon)

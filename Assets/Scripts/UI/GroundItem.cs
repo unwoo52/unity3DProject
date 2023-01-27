@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class GroundItem : MonoBehaviour
 {
     public ItemObject item;
+    [SerializeField] LayerMask TerrainMasks;
+    [SerializeField] private float GrabitySpeed = 1f;
+    [SerializeField] private float hoverDistance = 1f;
+    GameObject DropItemGraphic;
     float curPos;
-    float downMax = 0.1f;
-    float upMax = 0.5f;
-    float Movespeed = 0.5f;
+    float downMax = 1f;
+    float upMax = 1f;
+    float Movespeed = 0.1f;
 
     void Start()
     {
@@ -18,34 +23,43 @@ public class GroundItem : MonoBehaviour
     }
     void Update()
     {
+        ItemHovering();
+    }
+
+    /* codes */
+
+    private void ItemHovering()
+    {
         float delta = Time.deltaTime * Movespeed;
         curPos += delta;
-        if(curPos <= downMax)
+        if (curPos <= downMax)
         {
             Movespeed *= -1f;
             curPos = downMax;
         }
-        if(curPos >= upMax)
+        if (curPos >= upMax)
         {
             Movespeed *= -1f;
             curPos = upMax;
         }
-        transform.Translate(0, curPos *delta, 0);
+        transform.Translate(0, curPos * delta, 0);
     }
     private bool CrateDropItem()
     {
-        GameObject obj = new GameObject(item.name);
+        DropItemGraphic = new GameObject(item.name);
 
-        if (!AddMeshFilter(obj))    return false;
-        if (!AddMeshRenderer(obj))  return false;
+        if (!AddMeshFilter(DropItemGraphic)) return false;
+        if (!AddMeshRenderer(DropItemGraphic)) return false;
 
-        obj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        obj.transform.position = this.transform.position;
-        obj.transform.SetParent(transform);
+        DropItemGraphic.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        DropItemGraphic.transform.position = this.transform.position;
+        DropItemGraphic.transform.SetParent(transform);
 
         return true;
     }
-    /* codes */
+
+    
+
     private bool AddMeshFilter(GameObject obj)
     {
         if (item.prefab.gameObject.TryGetComponent(out MeshFilter meshfilter))
