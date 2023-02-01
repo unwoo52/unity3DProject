@@ -8,6 +8,7 @@ namespace Atithmethic
 {
     static public class Arithmetic
     {
+        /*
         static public Vector3 GetMidMoniter()
         {
             //플레이어 모니터 상태 체크
@@ -16,7 +17,7 @@ namespace Atithmethic
             else
                 return new Vector3(_components.tpCamera.pixelWidth / 2, _components.tpCamera.pixelHeight / 2);
 
-        }
+        }*/
     }
 }
 
