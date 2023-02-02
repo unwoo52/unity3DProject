@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CharMessageScript : MonoBehaviour
 {
-    Vector2 inputTextsize;
     public TMPro.TMP_Text m_TMP_Text;
     private RectTransform _rect = null;
     RectTransform myRect
@@ -23,16 +22,16 @@ public class CharMessageScript : MonoBehaviour
 
     public void SetText(string InputText)
     {
-        inputTextsize = m_TMP_Text.GetPreferredValues(InputText);
+        Vector2 inputTextsize = m_TMP_Text.GetPreferredValues(InputText);
 
         if (!IsTextLengthOverRectsize(inputTextsize))
             m_TMP_Text.text = InputText;
         else
-            m_TMP_Text.text = CreateLineOverText(InputText);
+            m_TMP_Text.text = CreateLineOverText(InputText, inputTextsize);
     }
 
     /*codes*/
-    private string CreateLineOverText(string InputText)
+    private string CreateLineOverText(string InputText, Vector2 inputTextsize)
     {
         int line = 1;
         RectTransform testRect = myRect;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChatWindow : MonoBehaviour
 {
+    Coroutine coDropDown = null;
     public Transform MyContent;
     public TMPro.TMP_InputField m_TMP_InputField;
 
@@ -18,10 +19,6 @@ public class ChatWindow : MonoBehaviour
         ClearInputField();
         ScrollBarDropDown();
 
-
-
-
-
         m_TMP_InputField.ActivateInputField();
     }
 
@@ -34,6 +31,10 @@ public class ChatWindow : MonoBehaviour
         {
             sct.SetText(text);
         }
+        else
+        {
+            Debug.LogError("ChatMessage 오브젝트에서 CharMessageScript스크립트를 찾을 수 없습니다.");
+        }
     }
 
     private void ClearInputField()
@@ -44,7 +45,8 @@ public class ChatWindow : MonoBehaviour
     private void ScrollBarDropDown()
     {
         //if (!m_Scrollbar.gameObject.activeSelf) return;
-        StartCoroutine(ScrollBarDropDownCourutine());
+        if (coDropDown != null) StopCoroutine(coDropDown);
+        coDropDown = StartCoroutine(ScrollBarDropDownCourutine());
     }
 
 
@@ -54,7 +56,7 @@ public class ChatWindow : MonoBehaviour
         //m_Scrollbar.value = 0.0f;
         while(m_Scrollbar.value > 0.0f)
         {
-            m_Scrollbar.value -= Time.deltaTime * 2.0f;
+            m_Scrollbar.value -= Time.deltaTime * 4.0f;
             yield return null;
         }
     }
