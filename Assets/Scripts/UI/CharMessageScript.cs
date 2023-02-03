@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using System.Text;
 
 public class CharMessageScript : MonoBehaviour
 {
@@ -22,49 +23,26 @@ public class CharMessageScript : MonoBehaviour
 
     public void SetText(string InputText)
     {
-        Vector2 inputTextsize = m_TMP_Text.GetPreferredValues(InputText);
+        m_TMP_Text.text = InputText;
 
-        if (!IsTextLengthOverRectsize(inputTextsize))
-            m_TMP_Text.text = InputText;
-        else
-            m_TMP_Text.text = CreateLineOverText(InputText, inputTextsize);
-    }
-
-    /*codes*/
-    private string CreateLineOverText(string InputText, Vector2 inputTextsize)
-    {
-        int line = 1;
-        RectTransform testRect = myRect;
-        string temp = "";
-        string result = "";
-
-        for (int i = 0; i < InputText.Length; ++i)
+        StringBuilder temp = new StringBuilder();
+        StringBuilder result = new StringBuilder();
+        for(int i = 0; i < InputText.Length; ++i)
         {
-            Vector2 textSize = m_TMP_Text.GetPreferredValues(temp + InputText[i]);
-            if (textSize.x > myRect.sizeDelta.x)
+            Vector2 TextSize = m_TMP_Text.GetPreferredValues(temp.ToString() + InputText[i]);
+            if(TextSize.x > myRect.sizeDelta.x)
             {
-                result += temp + '\n';
-                temp = "";
-                ++line;
+                temp.Append('\n');
+                result.Append(temp);
+                temp.Clear();
             }
-            temp += InputText[i];
+            temp.Append(InputText[i]);
         }
-        result += temp;
+        result.Append(temp);
 
-        ChangeRectSize(ref testRect, line, inputTextsize);
-
-        return result;
+        myRect.sizeDelta = m_TMP_Text.GetPreferredValues(result.ToString());
+        m_TMP_Text.text = result.ToString();
     }
+    
 
-    private void ChangeRectSize(ref RectTransform Rect, int line, Vector2 inputTextsize)
-    {
-        Rect.sizeDelta = new Vector2(Rect.sizeDelta.x, (float)line * inputTextsize.y);
-    }
-
-    #region .
-    private bool IsTextLengthOverRectsize(Vector2 size)
-    {
-        return myRect.sizeDelta.x < size.x;
-    }
-    #endregion
 }
