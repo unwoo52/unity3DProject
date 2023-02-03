@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Moon/220928Player.unity
     guid: 305d982cadf552e4590c331cb5983dbd
+  - enabled: 1
+    path: Assets/Scenes/StudyScene/SMain.unity
+    guid: 2c472a21c6391e245bc1be94f29e72f8
+  - enabled: 1
+    path: Assets/Scenes/StudyScene/SLoad.unity
+    guid: 98d4591f6eefc9b46a85bb2de9f569dc
+  - enabled: 1
+    path: Assets/Scenes/StudyScene/SPlay.unity
+    guid: bac056eaafd38944cba2e6bf980eff3d
   m_configObjects: {}
