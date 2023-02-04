@@ -11,19 +11,6 @@ public class Title : MonoBehaviour
     public Image myAlarmError = null;
     public Image myAlarmSave = null;
 
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public enum MenuState
     {
         Main, Start, Delete, Settings, KeySettings
@@ -31,49 +18,15 @@ public class Title : MonoBehaviour
 
     public MenuState myMenu = MenuState.Main;
 
-    void ChangeMenu(MenuState state)
+    private void ChangeMenu(MenuState state)
     {
         if (myMenu == state) return;
+
+        myMain[(int)myMenu].SetActive(false);
         myMenu = state;
-        switch (myMenu)
-        {
-            case MenuState.Main:
-                foreach (GameObject n in myMain)
-                {
-                    n.SetActive(false);
-                }
-                myMain[(int)MenuState.Main].SetActive(true);
-                break;
-            case MenuState.Start:
-                foreach (GameObject n in myMain)
-                {
-                    n.SetActive(false);
-                }
-                myMain[(int)MenuState.Start].SetActive(true);
-                break;
-            case MenuState.Delete:
-                foreach (GameObject n in myMain)
-                {
-                    n.SetActive(false);
-                }
-                myMain[(int)MenuState.Delete].SetActive(true);
-                break;
-            case MenuState.Settings:
-                foreach (GameObject n in myMain)
-                {
-                    n.SetActive(false);
-                }
-                myMain[(int)MenuState.Settings].SetActive(true);
-                break;
-            case MenuState.KeySettings:
-                foreach (GameObject n in myMain)
-                {
-                    n.SetActive(false);
-                }
-                myMain[(int)MenuState.KeySettings].SetActive(true);
-                break;
-        }
+        myMain[(int)state].SetActive(true);
     }
+
 
     public void ClickMainStart()
     {

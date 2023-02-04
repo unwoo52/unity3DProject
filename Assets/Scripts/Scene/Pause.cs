@@ -59,13 +59,6 @@ public class Pause : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F1))
@@ -104,6 +97,44 @@ public class Pause : MonoBehaviour
         ChangeMenu(MenuState.Main);
     }
 
+    private bool SaveGame(string gameName)
+    {
+        if (!MakeSaveDirectory(ref gameName)) return false;
+        if (!MakeSaveFile()) return false;
+
+        return true;
+    }
+
+    /*codes*/
+    private bool MakeSaveDirectory(ref string gameName)
+    {
+        string dataPath = Application.dataPath;
+        if (!Directory.Exists(dataPath + @"SaveFiles"))
+        {
+            Directory.CreateDirectory(dataPath + @"SaveFiles");
+        }
+        DirectoryInfo directoryInfo = Directory.CreateDirectory(dataPath + @"\SaveFiles\" + gameName);
+        if (!directoryInfo.Exists) return false;
+
+        return true;
+    }
+
+    private bool MakeSaveFile()
+    {
+        MakePlayerSaveData();
+        return true;
+    }
+    private bool MakePlayerSaveData()
+    {
+        PlayerData data = new PlayerData();
+        data.curHP = PlayerScript.instance.myInfo.CurHP;
+        data.curPos = PlayerScript.instance.transform.position;
+
+        FileManager.Inst.SaveFile(Application.dataPath + @"\SaveFile1.data", data);
+
+        StartCoroutine(Alarm(mySaveAlarm.gameObject));
+        return true;
+    }
     public void ClickSaveFile1()
     {
         PlayerData data = new PlayerData();
