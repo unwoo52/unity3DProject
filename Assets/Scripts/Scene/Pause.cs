@@ -63,12 +63,16 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            PlayerScript.instance.State.isCursorActive = !PlayerScript.instance.State.isCursorActive;
-            IsActive = !IsActive;
-            myCanvas.gameObject.SetActive(IsActive);
+            ActivateMenu();
         }
     }
 
+    private void ActivateMenu()
+    {
+        PlayerScript.instance.State.isCursorActive = !PlayerScript.instance.State.isCursorActive;
+        IsActive = !IsActive;
+        myCanvas.gameObject.SetActive(IsActive);
+    }
     public void ClickMainPlay()
     {
         PlayerScript.instance.State.isCursorActive = !PlayerScript.instance.State.isCursorActive;
