@@ -3,22 +3,23 @@ using Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class MouseInPut_Build// : MonoBehaviour
+public class MouseInPut_Build : MonoBehaviour
 {
     /* fields */
     #region .
     private bool isBuildingStateActive = false;
     public bool IsBuildingStateActive { get { return isBuildingStateActive; } }
-    private float distanceBuilding = 1.0f;
+    private float distanceBuilding = 10.0f;
     private GameObject HandBuilding; //건축 상태일 때 건물 오브젝트를 보관하는 공간
     private BuildingObjectScript HandBuildingScript;
-    private Renderer HandBuildingRenderer;
+
     #endregion
     public void BuildingProcess(Ray ray)
     {
@@ -34,7 +35,7 @@ public class MouseInPut_Build// : MonoBehaviour
             RotateBuilding_to_HitPosition(hit.point);
 
             if (IsCollOverlap())    return;
-            if (!IsCanBuild())      return;
+            RenderGreen();
 
             if (Input.GetMouseButton(0))
                 BuildProcess(hit);
@@ -42,30 +43,45 @@ public class MouseInPut_Build// : MonoBehaviour
         else
         {
             RotateBuilding_to_RayEnd(ray);
+            RenderCyan();
         }
     }
 
     /* codes */
     #region .
+    private void SwapRenderer()
+    {
+        Material material = Resources.Load("Prefabs/imsi") as Material;
+        HandBuildingScript.ChangeMaterials(material);
+        if (HandBuildingScript.GetMaterials() != null) { Debug.LogError("임시 Metarial로 바꾸는 데에 실패했습니다."); }
+
+        HandBuildingScript.GetMaterials().color = new Color(1,1,1,1);
+    }
     private void RenderRed()
     {
+        HandBuildingScript.GetMaterials().color = new Color(1,0,0,0.5f);
+        Debug.Log("RED");
         return;
     }
     private void RenderGreen()
     {
+        HandBuildingScript.GetMaterials().color = new Color(0, 1, 0, 0.5f);
+        Debug.Log("GREEN");
         return;
     }
     private void RenderCyan()
     {
+        HandBuildingScript.GetMaterials().color = new Color(0.2f, 0.2f, 0.7f, 0.5f);
+        Debug.Log("CYAN");
         return;
     }
     private void RotateBuilding_to_RayEnd(Ray ray)
     {
         HandBuilding.transform.position = ray.GetPoint(distanceBuilding);
-        RenderCyan();
     }
     public void BuildProcess(RaycastHit hit)
     {
+        RollbackMaterial();
         isBuildingStateActive = false;
         HandBuilding.GetComponent<Collider>().isTrigger = false;
         HandBuilding.transform.position = hit.point;
@@ -83,19 +99,13 @@ public class MouseInPut_Build// : MonoBehaviour
         }
         return false;
     }
-    private bool IsCanBuild()
-    {
-        if (HandBuildingScript.isBoxOverlap)    return false;
-        RenderGreen();
-        return true;
-    }
     private void RotateBuilding_to_HitPosition(Vector3 vector3)
     {
         HandBuilding.transform.position = vector3;
     }
     private void CancelBuilding()
     {
-        HandBuildingRenderer.sharedMaterial.color = Color.white;
+        RollbackMaterial();
         HandBuildingScript.ChangeState(BuildingObjectScript.BuildingObjectState.Destroy);
         HandBuilding = null;
         isBuildingStateActive = false;
@@ -109,8 +119,25 @@ public class MouseInPut_Build// : MonoBehaviour
         PlayerScript.PlayerInstance.ActiveOnCursor();
         isBuildingStateActive = true;
 
+        HandBuilding = gameObject;
+        if (!HandBuilding.transform.GetChild(0).TryGetComponent(out HandBuildingScript))
+        {
+            // 빌드 종료.
+        }
+
+        HandBuildingScript.ChangeState(BuildingObjectScript.BuildingObjectState.Making);
         HandBuilding.transform.SetParent(PlayerScript.PlayerInstance.transform);
         gameObject.transform.GetChild(0).TryGetComponent(out HandBuildingScript);
+        SwapRenderer();
+    }
+
+    private void RollbackMaterial()
+    {
+        
+        if(!(HandBuildingScript.ChangeMaterials(HandBuildingScript._OriginMaterial)))
+        {
+            Debug.LogError("Material을 Origin Material로 돌려놓는데에 실패했습니다.");
+        }
     }
     #endregion
 }

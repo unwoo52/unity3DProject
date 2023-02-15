@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Player;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,9 @@ public class BuildingObjectScript : MonoBehaviour
     #region fields, methods
     public bool isDistanceOver = false; //레이 끝까지 가도 건설 가능한 바닥이 없어서 건설할 수 없는 상태인가?
     public bool isBoxOverlap = false; //checkBox가 벽에 닿아서 건설할 수 없는 상태인가?
+
+    [SerializeField] private Material OriginMaterial = null;
+    public Material _OriginMaterial { get { return OriginMaterial; } }
 
     private Transform buildingObject; //자기 자신 스크립트 저장
     private MeshCollider RootObjectMeshcollider;
@@ -57,9 +61,9 @@ public class BuildingObjectScript : MonoBehaviour
             case BuildingObjectState.Item:
                 break;
             case BuildingObjectState.Making:
+                OverlapObject.SetActive(true);
                 break;
             case BuildingObjectState.Runing:
-                OverlapObject.SetActive(true);
                 EffectObject.SetActive(true);
                 break;
             case BuildingObjectState.Destroy:
@@ -67,7 +71,19 @@ public class BuildingObjectScript : MonoBehaviour
                 Destroy(this);
                 break;
         }
-    }
+    }   
     #endregion
     /* codes */
+    public Material GetMaterials()
+    {
+        if(!transform.parent.TryGetComponent(out MeshRenderer BuildObjectMeshRenderer)) return null;
+        return BuildObjectMeshRenderer.material;
+    }
+    public bool ChangeMaterials(Material material)
+    {
+        if(!transform.parent.TryGetComponent(out MeshRenderer meshRenderer)) return false;
+        meshRenderer.material = material;
+        if (meshRenderer.material == null) return false;
+        return true;
+    }
 }

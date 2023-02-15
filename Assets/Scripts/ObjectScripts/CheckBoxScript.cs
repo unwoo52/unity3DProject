@@ -15,7 +15,7 @@ public class CheckBoxScript : MonoBehaviour
     }
     private void Update()
     {
-        GetComponentInParent<BuildingObjectScript>().isBoxOverlap = collList.Count != 0; //checkBoxCount가 0이 아니면 isBoxOverlap를 트루로
+        GetComponentInParent<BuildingObjectScript>().isBoxOverlap = (collList.Count != 0); //checkBoxCount가 0이 아니면 isBoxOverlap를 트루로
     }
     private void OnTriggerEnter(Collider other)
     {

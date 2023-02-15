@@ -237,4 +237,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDistanceOver: 0
   isBoxOverlap: 0
+  OriginMaterial: {fileID: 2100000, guid: b218d35c8dc65164892039ea0aea3b4b, type: 2}
   campFireState: 0
