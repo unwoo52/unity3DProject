@@ -74,10 +74,17 @@ public class BuildingObjectScript : MonoBehaviour
     }   
     #endregion
     /* codes */
-    public Material GetMaterials()
+    public Material GetMaterial()
     {
         if(!transform.parent.TryGetComponent(out MeshRenderer BuildObjectMeshRenderer)) return null;
         return BuildObjectMeshRenderer.material;
+    }
+    public bool SetMaterial(Material material)
+    {
+        transform.parent.TryGetComponent(out MeshRenderer meshRenderer);
+        meshRenderer.material = material;
+        if(meshRenderer == null) return false;
+        return true;
     }
     public bool ChangeMaterials(Material material)
     {

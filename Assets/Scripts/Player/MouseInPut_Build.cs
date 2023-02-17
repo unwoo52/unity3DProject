@@ -53,25 +53,29 @@ public class MouseInPut_Build : MonoBehaviour
     {
         Material material = Resources.Load("Prefabs/imsi") as Material;
         HandBuildingScript.ChangeMaterials(material);
-        if (HandBuildingScript.GetMaterials() != null) { Debug.LogError("임시 Metarial로 바꾸는 데에 실패했습니다."); }
+        if (HandBuildingScript.GetMaterial() != null) 
+        { 
+            Debug.LogError("임시 Metarial로 바꾸는 데에 실패했습니다.");
+            HandBuildingScript.SetMaterial();
+        }
 
-        HandBuildingScript.GetMaterials().color = new Color(1,1,1,1);
+        HandBuildingScript.GetMaterial().color = new Color(1,1,1,1);
     }
     private void RenderRed()
     {
-        HandBuildingScript.GetMaterials().color = new Color(1,0,0,0.5f);
+        HandBuildingScript.GetMaterial().color = new Color(1,0,0,0.5f);
         Debug.Log("RED");
         return;
     }
     private void RenderGreen()
     {
-        HandBuildingScript.GetMaterials().color = new Color(0, 1, 0, 0.5f);
+        HandBuildingScript.GetMaterial().color = new Color(0, 1, 0, 0.5f);
         Debug.Log("GREEN");
         return;
     }
     private void RenderCyan()
     {
-        HandBuildingScript.GetMaterials().color = new Color(0.2f, 0.2f, 0.7f, 0.5f);
+        HandBuildingScript.GetMaterial().color = new Color(0.2f, 0.2f, 0.7f, 0.5f);
         Debug.Log("CYAN");
         return;
     }
