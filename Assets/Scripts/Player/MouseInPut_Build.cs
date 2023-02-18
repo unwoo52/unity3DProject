@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class MouseInPut_Build : MonoBehaviour
+public class MouseInPut_Build// : MonoBehaviour
 {
     /* fields */
     #region .
@@ -19,6 +19,7 @@ public class MouseInPut_Build : MonoBehaviour
     private float distanceBuilding = 10.0f;
     private GameObject HandBuilding; //건축 상태일 때 건물 오브젝트를 보관하는 공간
     private BuildingObjectScript HandBuildingScript;
+
 
     #endregion
     public void BuildingProcess(Ray ray)
@@ -53,10 +54,10 @@ public class MouseInPut_Build : MonoBehaviour
     {
         Material material = Resources.Load("Prefabs/imsi") as Material;
         HandBuildingScript.ChangeMaterials(material);
-        if (HandBuildingScript.GetMaterial() != null) 
+        if (HandBuildingScript.GetMaterial() == null) 
         { 
             Debug.LogError("임시 Metarial로 바꾸는 데에 실패했습니다.");
-            HandBuildingScript.SetMaterial();
+            HandBuildingScript.SetOrigibMaterail();
         }
 
         HandBuildingScript.GetMaterial().color = new Color(1,1,1,1);
@@ -64,19 +65,16 @@ public class MouseInPut_Build : MonoBehaviour
     private void RenderRed()
     {
         HandBuildingScript.GetMaterial().color = new Color(1,0,0,0.5f);
-        Debug.Log("RED");
         return;
     }
     private void RenderGreen()
     {
         HandBuildingScript.GetMaterial().color = new Color(0, 1, 0, 0.5f);
-        Debug.Log("GREEN");
         return;
     }
     private void RenderCyan()
     {
         HandBuildingScript.GetMaterial().color = new Color(0.2f, 0.2f, 0.7f, 0.5f);
-        Debug.Log("CYAN");
         return;
     }
     private void RotateBuilding_to_RayEnd(Ray ray)

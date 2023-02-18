@@ -8,8 +8,6 @@ public class GroundItem : MonoBehaviour
 {
     public ItemObject item;
     [SerializeField] LayerMask TerrainMasks;
-    [SerializeField] private float GrabitySpeed = 1f;
-    [SerializeField] private float hoverDistance = 1f;
     GameObject DropItemGraphic;
     float curPos;
     float downMax = 1f;

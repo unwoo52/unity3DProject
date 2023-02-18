@@ -93,4 +93,10 @@ public class BuildingObjectScript : MonoBehaviour
         if (meshRenderer.material == null) return false;
         return true;
     }
+    public bool SetOrigibMaterail()
+    {
+        if (!transform.parent.TryGetComponent(out MeshRenderer meshRenderer)) return false;
+        meshRenderer.material = _OriginMaterial;
+        return true;
+    }
 }
