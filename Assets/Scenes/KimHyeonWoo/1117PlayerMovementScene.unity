@@ -1871,7 +1871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815963357688724476, guid: 5417ec1c19c343b4182c45381c0a89ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.2
+      value: -12.5
       objectReference: {fileID: 0}
     - target: {fileID: 1815963357688724476, guid: 5417ec1c19c343b4182c45381c0a89ca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1916,6 +1916,10 @@ PrefabInstance:
     - target: {fileID: 1815963357688724477, guid: 5417ec1c19c343b4182c45381c0a89ca, type: 3}
       propertyPath: maxCuttingHp
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815963357688724477, guid: 5417ec1c19c343b4182c45381c0a89ca, type: 3}
+      propertyPath: numofDestroyDropItem
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1815963357689079772, guid: 5417ec1c19c343b4182c45381c0a89ca, type: 3}
       propertyPath: m_Name
