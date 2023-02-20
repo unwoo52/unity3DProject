@@ -59,22 +59,20 @@ public class MouseInPut_Build// : MonoBehaviour
             Debug.LogError("임시 Metarial로 바꾸는 데에 실패했습니다.");
             HandBuildingScript.SetOrigibMaterail();
         }
-
-        HandBuildingScript.GetMaterial().color = new Color(1,1,1,1);
     }
     private void RenderRed()
     {
-        HandBuildingScript.GetMaterial().color = new Color(1,0,0,0.5f);
+        HandBuildingScript.GetMaterial().color = new Color(207 / 255f,0,0, 61 / 255f);
         return;
     }
     private void RenderGreen()
     {
-        HandBuildingScript.GetMaterial().color = new Color(0, 1, 0, 0.5f);
+        HandBuildingScript.GetMaterial().color = new Color(102 / 255f, 233 / 255f, 52 / 255f, 75 / 255f);
         return;
     }
     private void RenderCyan()
     {
-        HandBuildingScript.GetMaterial().color = new Color(0.2f, 0.2f, 0.7f, 0.5f);
+        HandBuildingScript.GetMaterial().color = new Color(99/255f, 99 / 255f, 69 / 255f, 71 / 255f);
         return;
     }
     private void RotateBuilding_to_RayEnd(Ray ray)
@@ -114,18 +112,19 @@ public class MouseInPut_Build// : MonoBehaviour
     }
     public void StartBuilding(GameObject gameObject)
     {
-        if (gameObject is null)
+        HandBuilding = gameObject;
+        HandBuilding.transform.GetChild(0).TryGetComponent(out HandBuildingScript);
+        if (HandBuilding is null)
         {
             throw new ArgumentNullException(nameof(gameObject));
         }
+        if (HandBuildingScript is null)
+        {
+            throw new ArgumentNullException(nameof(gameObject));
+        }
+
         PlayerScript.PlayerInstance.ActiveOnCursor();
         isBuildingStateActive = true;
-
-        HandBuilding = gameObject;
-        if (!HandBuilding.transform.GetChild(0).TryGetComponent(out HandBuildingScript))
-        {
-            // 빌드 종료.
-        }
 
         HandBuildingScript.ChangeState(BuildingObjectScript.BuildingObjectState.Making);
         HandBuilding.transform.SetParent(PlayerScript.PlayerInstance.transform);
