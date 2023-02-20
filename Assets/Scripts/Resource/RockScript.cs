@@ -99,7 +99,7 @@ public class RockScript : MonoBehaviour
         if (TryGetComponent<MeshFilter>(out var mf)) Destroy(mf);
         for (int i = 0; i < numofDestroyDropItem; i++)
         {
-            Ray ray = new Ray(Vector3.zero, new Vector3(Random.Range(0, 1), Random.Range(0, 1), Random.Range(0, 1)));
+            Ray ray = new Ray(Vector3.zero, new Vector3(Random.Range(0, 300), Random.Range(0, 300), Random.Range(0, 300)));
             Vector3 hit = transform.position;
             instantiateDropItem(ray, hit);
         }
